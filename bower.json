@@ -1,0 +1,25 @@
+{
+  "name": "markdownjs",
+  "version": "1.0.0",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/markdownjs/markdownjs/blob/master/LICENSE"
+  },
+  "description": "Yet another markdown parser written in JavaScript",
+  "homepage": "https://github.com/markdownjs/markdownjs.git",
+  "author": {
+    "name": "Markdownjs",
+    "url": "https://github.com/markdownjs/markdownjs/blob/master/AUTHORS.txt"
+  },
+  "main": "dist/markdown.js",
+  "keywords": [
+    "markdown",
+    "markup",
+    "html"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+  ]
+}
