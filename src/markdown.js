@@ -10,22 +10,6 @@
     (this || window).markdown = mod();
 })(function(){
   "use strict";
-  function merge(obj) {
-    var i = 1
-      , target
-      , key;
-
-    for (; i < arguments.length; i++) {
-      target = arguments[i];
-      for (key in target) {
-        if (Object.prototype.hasOwnProperty.call(target, key)) {
-          obj[key] = target[key];
-        }
-      }
-    }
-
-    return obj;
-  }
 
   function markdown(src, opt, callback) {
     if (callback || typeof opt === 'function') {
@@ -34,7 +18,7 @@
         opt = null;
       }
 
-      opt = merge({}, markdown.defaults, opt || {});
+      opt = markdown.merge({}, markdown.defaults, opt || {});
 
       var highlight = opt.highlight
         , tokens
@@ -98,7 +82,7 @@
       return;
     }
     try {
-      if (opt) opt = merge({}, markdown.defaults, opt);
+      if (opt) opt = markdown.merge({}, markdown.defaults, opt);
       return Parser.parse(Lexer.lex(src, opt), opt);
     } catch (e) {
       e.message += '\nPlease report this to https://github.com/markdownjs/markdownjs';
@@ -116,7 +100,7 @@
    */
 
   markdown.options = markdown.setOptions = function(opt) {
-    merge(markdown.defaults, opt);
+    markdown.merge(markdown.defaults, opt);
     return markdown;
   };
 
@@ -141,8 +125,24 @@
   /**
    * Expose
    */
+  markdown.merge = function(obj){
+    var i = 1
+      , target
+      , key;
+
+    for (; i < arguments.length; i++) {
+      target = arguments[i];
+      for (key in target) {
+        if (Object.prototype.hasOwnProperty.call(target, key)) {
+          obj[key] = target[key];
+        }
+      }
+    }
+
+    return obj;    
+  };
 
   markdown.parse = markdown;
-  markdown.merge = merge;
+
   return markdown;
 });
