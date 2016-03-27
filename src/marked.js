@@ -6,9 +6,9 @@
 
 ;(function() {
 
-/**
- * Block-Level Grammar
- */
+  /**
+   * Block-Level Grammar
+   */
 
 var block = {
   newline: /^\n+/,
