@@ -167,6 +167,9 @@
 	  text: replace(inline.gfm.text)('{2,}', '*')()
 	});
 
+	/**
+	* Expose
+	*/
 	markdown.grammar = {
 		'block': block,
 		'inline': inline

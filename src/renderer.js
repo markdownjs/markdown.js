@@ -8,5 +8,7 @@
 })(function(markdown) {
 	"use strict";
 
+
+
 	markdown.Renderer = Renderer;
 });
