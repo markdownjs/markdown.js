@@ -361,7 +361,7 @@
 	/**************************
 	 * Inline Lexer & Compiler
 	 **************************/
-	 var inline = markdown.grammar.inline; 
+	var inline = markdown.grammar.inline; 
 
 	function InlineLexer(links, options) {
 	  this.options = options || markdown.defaults;
