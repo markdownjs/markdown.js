@@ -27,15 +27,15 @@
 
 	  if (!lang) {
 	    return '<pre><code>'
-	      + (escaped ? code : escape(code, true))
+	      + (escaped ? code : markdown.escape(code, true))
 	      + '\n</code></pre>';
 	  }
 
 	  return '<pre><code class="'
 	    + this.options.langPrefix
-	    + escape(lang, true)
+	    + markdown.escape(lang, true)
 	    + '">'
-	    + (escaped ? code : escape(code, true))
+	    + (escaped ? code : markdown.escape(code, true))
 	    + '\n</code></pre>\n';
 	};
 
@@ -124,7 +124,7 @@
 	Renderer.prototype.link = function(href, title, text) {
 	  if (this.options.sanitize) {
 	    try {
-	      var prot = decodeURIComponent(unescape(href))
+	      var prot = decodeURIComponent(markdown.unescape(href))
 	        .replace(/[^\w:]/g, '')
 	        .toLowerCase();
 	    } catch (e) {
