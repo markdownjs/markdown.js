@@ -1,3 +1,6 @@
+/**
+ * Markdown Lexer
+ */
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("markdown"));
@@ -429,7 +432,7 @@
 	          : this.mangle(cap[1]);
 	        href = this.mangle('mailto:') + text;
 	      } else {
-	        text = escape(cap[1]);
+	        text = markdown.escape(cap[1]);
 	        href = text;
 	      }
 	      out += this.renderer.link(href, null, text);
@@ -439,7 +442,7 @@
 	    // url (gfm)
 	    if (!this.inLink && (cap = this.rules.url.exec(src))) {
 	      src = src.substring(cap[0].length);
-	      text = escape(cap[1]);
+	      text = markdown.escape(cap[1]);
 	      href = text;
 	      out += this.renderer.link(href, null, text);
 	      continue;
@@ -456,7 +459,7 @@
 	      out += this.options.sanitize
 	        ? this.options.sanitizer
 	          ? this.options.sanitizer(cap[0])
-	          : escape(cap[0])
+	          : markdown.escape(cap[0])
 	        : cap[0]
 	      continue;
 	    }
@@ -507,7 +510,7 @@
 	    // code
 	    if (cap = this.rules.code.exec(src)) {
 	      src = src.substring(cap[0].length);
-	      out += this.renderer.codespan(escape(cap[2], true));
+	      out += this.renderer.codespan(markdown.escape(cap[2], true));
 	      continue;
 	    }
 
@@ -528,7 +531,7 @@
 	    // text
 	    if (cap = this.rules.text.exec(src)) {
 	      src = src.substring(cap[0].length);
-	      out += this.renderer.text(escape(this.smartypants(cap[0])));
+	      out += this.renderer.text(markdown.escape(this.smartypants(cap[0])));
 	      continue;
 	    }
 
@@ -546,12 +549,12 @@
 	 */
 
 	InlineLexer.prototype.outputLink = function(cap, link) {
-	  var href = escape(link.href)
-	    , title = link.title ? escape(link.title) : null;
+	  var href = markdown.escape(link.href)
+	    , title = link.title ? markdown.escape(link.title) : null;
 
 	  return cap[0].charAt(0) !== '!'
 	    ? this.renderer.link(href, title, this.output(cap[1]))
-	    : this.renderer.image(href, title, escape(cap[1]));
+	    : this.renderer.image(href, title, markdown.escape(cap[1]));
 	};
 
 	/**

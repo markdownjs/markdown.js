@@ -1,3 +1,6 @@
+/**
+ * Markdown Renderer
+ */
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     mod(require("markdown"));
