@@ -16,7 +16,7 @@
 	 */
 
 	function Renderer(options) {
-	  this.options = options || {};
+	  this.options = markdown.options || {};
 	}
 
 	Renderer.prototype.code = function(code, lang, escaped) {
@@ -159,4 +159,6 @@
 	};
 
 	markdown.Renderer = Renderer;
+	markdown.defaults.renderer = new markdown.Renderer
+
 });

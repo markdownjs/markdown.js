@@ -19,7 +19,7 @@
 	  this.tokens = [];
 	  this.token = null;
 	  this.options = options || markdown.defaults;
-	  this.options.renderer = this.options.renderer || new Renderer;
+	  this.options.renderer = this.options.renderer || new markdown.Renderer;
 	  this.renderer = this.options.renderer;
 	  this.renderer.options = this.options;
 	}
@@ -38,7 +38,7 @@
 	 */
 
 	Parser.prototype.parse = function(src) {
-	  this.inline = new InlineLexer(src.links, this.options, this.renderer);
+	  this.inline = new markdown.InlineLexer(src.links, this.options, this.renderer);
 	  this.tokens = src.reverse();
 
 	  var out = '';

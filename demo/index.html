@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="jquery@*" data-semver="2.2.0" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    
+    <!-- <script type="text/javascript" src="https://cdn.rawgit.com/markdownjs/markdown.js/master/dist/markdown.js"></script> -->
+    <script type="text/javascript" src="../dist/markdown.js"></script>
+  </head>
+
+  <body>
+    <h2>Type your markdown here:</h2>
+    <textarea id="md" style="width:100%;height:200px"></textarea>
+    <button onclick="parseMD()">Generate</button>
+    <h2>Preview:</h2>
+    <div id="preview"></div>
+    <script>
+    
+    function parseMD(){
+      md_content = $('#md').val(),
+      html_content = markdown(md_content);
+      
+      $('#preview').html(html_content)      
+    }
+    </script>
+  </body>
+
+</html>

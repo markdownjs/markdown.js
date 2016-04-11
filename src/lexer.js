@@ -370,7 +370,7 @@
 	  this.options = options || markdown.defaults;
 	  this.links = links;
 	  this.rules = inline.normal;
-	  this.renderer = this.options.renderer || new Renderer;
+	  this.renderer = this.options.renderer || new markdown.Renderer;
 	  this.renderer.options = this.options;
 
 	  if (!this.links) {

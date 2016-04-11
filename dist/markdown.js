@@ -11,6 +11,8 @@
 })(function(){
   "use strict";
 
+  markdown.Renderer = function (options) { this.options = markdown.options || {}; }
+
   function markdown(src, opt, callback) {
     if (callback || typeof opt === 'function') {
       if (!callback) {
@@ -26,7 +28,7 @@
         , i = 0;
 
       try {
-        tokens = Lexer.lex(src, opt)
+        tokens = markdown.Lexer.lex(src, opt)
       } catch (e) {
         return callback(e);
       }
@@ -42,7 +44,7 @@
         var out;
 
         try {
-          out = Parser.parse(tokens, opt);
+          out = markdown.Parser.parse(tokens, opt);
         } catch (e) {
           err = e;
         }
@@ -83,7 +85,7 @@
     }
     try {
       if (opt) opt = markdown.merge({}, markdown.defaults, opt);
-      return Parser.parse(Lexer.lex(src, opt), opt);
+      return markdown.Parser.parse(markdown.Lexer.lex(src, opt), opt);
     } catch (e) {
       e.message += '\nPlease report this to https://github.com/markdownjs/markdownjs';
       if ((opt || markdown.defaults).silent) {
@@ -118,7 +120,7 @@
     langPrefix: 'lang-',
     smartypants: false,
     headerPrefix: '',
-    renderer: new Renderer,
+    renderer: new markdown.Renderer,
     xhtml: false
   };
 
@@ -177,9 +179,11 @@
   }
 
   markdown.noop = function(){}
-  markdown.noop.exec = noop;
+  markdown.noop.exec = markdown.noop;
 
   markdown.parse = markdown;
+
+
 
   return markdown;
 });
@@ -734,7 +738,7 @@
 	  this.options = options || markdown.defaults;
 	  this.links = links;
 	  this.rules = inline.normal;
-	  this.renderer = this.options.renderer || new Renderer;
+	  this.renderer = this.options.renderer || new markdown.Renderer;
 	  this.renderer.options = this.options;
 
 	  if (!this.links) {
@@ -991,7 +995,7 @@
 	 */
 
 	function Renderer(options) {
-	  this.options = options || {};
+	  this.options = markdown.options || {};
 	}
 
 	Renderer.prototype.code = function(code, lang, escaped) {
@@ -1134,6 +1138,8 @@
 	};
 
 	markdown.Renderer = Renderer;
+	markdown.defaults.renderer = new markdown.Renderer
+
 });;/**
  * Markdown Parser
  */
@@ -1155,7 +1161,7 @@
 	  this.tokens = [];
 	  this.token = null;
 	  this.options = options || markdown.defaults;
-	  this.options.renderer = this.options.renderer || new Renderer;
+	  this.options.renderer = this.options.renderer || new markdown.Renderer;
 	  this.renderer = this.options.renderer;
 	  this.renderer.options = this.options;
 	}
@@ -1174,7 +1180,7 @@
 	 */
 
 	Parser.prototype.parse = function(src) {
-	  this.inline = new InlineLexer(src.links, this.options, this.renderer);
+	  this.inline = new markdown.InlineLexer(src.links, this.options, this.renderer);
 	  this.tokens = src.reverse();
 
 	  var out = '';
