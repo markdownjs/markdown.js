@@ -3,9 +3,6 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({        
         concat: {
-            options: {
-                separator: ';'
-            },
             dist: {
                 src: ['src/core.js','src/grammar.js','src/lexer.js','src/renderer.js','src/parser.js'],
                 dest: 'dist/markdown.js'

@@ -160,5 +160,4 @@
 
 	markdown.Renderer = Renderer;
 	markdown.defaults.renderer = new markdown.Renderer
-
 });

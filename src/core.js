@@ -1,7 +1,7 @@
 /**
- * markdown core
+ * Markdown core
  */
- (function(mod) {
+(function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
     module.exports = mod();
   else if (typeof define == "function" && define.amd) // AMD
@@ -151,7 +151,7 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
-  }
+  };
 
   markdown.unescape = function(html) {
     return html.replace(/&([#\w]+);/g, function(_, n) {
@@ -164,7 +164,7 @@
       }
       return '';
     });
-  }
+  };
 
   markdown.replace = function(regex, opt) {
     regex = regex.source;
@@ -176,14 +176,12 @@
       regex = regex.replace(name, val);
       return self;
     };
-  }
+  };
 
   markdown.noop = function(){}
   markdown.noop.exec = markdown.noop;
 
   markdown.parse = markdown;
-
-
 
   return markdown;
 });
