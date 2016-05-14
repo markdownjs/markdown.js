@@ -1,4 +1,4 @@
 # markdownjs
 
-> Yet another markdown parser written in JavaScript. 
-> Built for simplicity.
+> Yet another markdown parser built for simplicity.
+> Written in JavaScript.
